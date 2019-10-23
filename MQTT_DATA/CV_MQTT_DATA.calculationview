@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="CV_MQTT_DATA" applyPrivilegeType="ANALYTIC_PRIVILEGE" dataCategory="CUBE" schemaVersion="2.3" defaultClient="$$client$$" visibility="reportingEnabled" outputViewType="Aggregation" calculationScenarioType="TREE_BASED" enforceSqlExecution="false">
+<descriptions defaultDescription="CV_MQTT_DATA"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="MQTT_DATA" type="DATA_BASE_TABLE">
+    <viewAttributes allViewAttributes="true"/>
+    <columnObject schemaName="SYSTEM" columnObjectName="MQTT_DATA"/>
+  </DataSource>
+</dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1">
+    <viewAttributes>
+      <viewAttribute id="DISTANCIA"/>
+      <viewAttribute id="ID"/>
+      <viewAttribute id="NIVEL"/>
+      <viewAttribute id="REFERENCIA"/>
+      <viewAttribute id="TIMESTAMP"/>
+      <viewAttribute id="UMIDADE_PERCENTUAL"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="#MQTT_DATA">
+      <mapping xsi:type="Calculation:AttributeMapping" target="DISTANCIA" source="DISTANCIA"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ID" source="ID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="NIVEL" source="NIVEL"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="REFERENCIA" source="REFERENCIA"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TIMESTAMP" source="TIMESTAMP"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="UMIDADE_PERCENTUAL" source="UMIDADE_PERCENTUAL"/>
+    </input>
+  </calculationView>
+</calculationViews>
+<logicalModel id="Projection_1">
+  <attributes>
+    <attribute id="ID" order="2" semanticType="empty" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ID"/>
+      <keyMapping columnObjectName="Projection_1" columnName="ID"/>
+    </attribute>
+    <attribute id="TIMESTAMP" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="TIMESTAMP"/>
+      <keyMapping columnObjectName="Projection_1" columnName="TIMESTAMP"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="DISTANCIA" order="1" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="DISTANCIA"/>
+      <measureMapping columnObjectName="Projection_1" columnName="DISTANCIA"/>
+    </measure>
+    <measure id="NIVEL" order="3" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="NIVEL"/>
+      <measureMapping columnObjectName="Projection_1" columnName="NIVEL"/>
+    </measure>
+    <measure id="REFERENCIA" order="4" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="REFERENCIA"/>
+      <measureMapping columnObjectName="Projection_1" columnName="REFERENCIA"/>
+    </measure>
+    <measure id="UMIDADE_PERCENTUAL" order="6" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="UMIDADE_PERCENTUAL"/>
+      <measureMapping columnObjectName="Projection_1" columnName="UMIDADE_PERCENTUAL"/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="87" y="236"/>
+      <rectangleSize height="30" width="140"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>
