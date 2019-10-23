@@ -1,0 +1,5 @@
+npm install mqtt --save
+
+npm mqtt -g
+
+npm i request
